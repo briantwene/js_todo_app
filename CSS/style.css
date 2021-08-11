@@ -1,0 +1,257 @@
+/* Filename: style.css
+Name: Brian Twene
+Date: 10/08/2021 */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: "Poppins", sans-serif;
+}
+
+input,
+button {
+  font-family: inherit;
+}
+
+body {
+  min-height: 100vh;
+  /* background-color: #006eff; */
+  background: rgb(1, 245, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(1, 245, 255, 1) 0%,
+    rgba(0, 99, 255, 1) 100%
+  );
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content auto min-content;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+}
+/* _____General Layout settings_____ */
+header {
+  color: white;
+  padding: 1em;
+  font-weight: 500;
+  font-size: 1.8em;
+  text-align: center;
+  grid-area: header;
+}
+
+main {
+  grid-area: main;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+footer {
+  background-color: black;
+  color: white;
+  grid-area: footer;
+  padding: 0.5em;
+  text-align: center;
+  font-size: 2em;
+}
+
+a {
+  color: white;
+}
+
+/* _______ TO-DO LIST APP CONTAINER______ */
+
+.todo-container {
+  height: 100%;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.todo-entry,
+.todo-list-container {
+  background-color: white;
+  padding: 1em;
+  margin: 1em 0em;
+  width: 100%;
+  border-radius: 1em;
+  /* box-shadow: 0.5em 1em 1em rgba(0, 0, 0, 0.5); */
+  box-shadow: 0 2em 2em rgba(0, 0, 0, 0.3);
+}
+
+.userInput {
+  background-color: white;
+  display: flex;
+  border-radius: 0.5em;
+}
+.todo-input {
+  width: 80%;
+  border: none;
+  font-size: 2em;
+  margin-right: 1%;
+  padding: 0.5em;
+  border-radius: 0.2em;
+}
+
+.todo-add {
+  width: 19%;
+  font-size: 2em;
+  font-weight: 500;
+  padding: 0.5em;
+  border: none;
+  background-color: rgba(41, 98, 255);
+  color: white;
+  border-radius: 0.2em;
+  transition: all 300ms;
+}
+
+.todo-add:hover {
+  background-color: rgba(21, 68, 225);
+}
+.todo-list-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.list-item {
+  display: flex;
+  background-color: rgb(241, 241, 241);
+  font-size: 1.8em;
+  margin: 1em 0em;
+  border-radius: 0.5em;
+}
+
+.delete {
+  width: 15%;
+  border: none;
+  background-color: rgb(255, 0, 0);
+  color: white;
+  font-size: 1em;
+  border-radius: 0em 0.5em 0.5em 0em;
+}
+.delete:hover {
+  background-color: rgb(225, 0, 0);
+}
+
+.done {
+  width: 15%;
+  background-color: rgb(61, 199, 61);
+  color: white;
+  border: none;
+  font-size: 1em;
+}
+.done:hover {
+  background-color: rgb(31, 169, 31);
+}
+
+.text {
+  width: 70%;
+  padding: 0.5em;
+}
+
+.complete {
+  text-decoration-line: line-through;
+  color: green;
+}
+
+.todo-bottom {
+  text-align: center;
+}
+
+.clear {
+  font-size: 2em;
+  font-weight: 700;
+  border-radius: 0.5em;
+  border: none;
+  padding: 0.5em;
+  background-color: rgb(225, 0, 0);
+  color: white;
+}
+
+.clear:hover {
+  background-color: rgb(172, 0, 0);
+}
+
+.hidden {
+  display: none;
+}
+
+.no-tasks {
+  text-align: center;
+  color: white;
+  margin: auto;
+}
+
+h2 {
+  font-size: 4em;
+}
+
+.no-tasks > p {
+  font-size: 2em;
+}
+
+input:invalid {
+  border: 2px dashed red;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* _________RESPONSIVE SETTINGS_________ */
+
+/* small device */
+@media screen and (max-width: 320px) {
+  header {
+    font-size: 2em;
+  }
+  .todo-container {
+    width: 100%;
+
+  }
+
+  .todo-entry,
+  .todo-list-container {
+    width: 100%;
+    border-radius: 0em;
+    /* box-shadow: 0.5em 1em 1em rgba(0, 0, 0, 0.5); */
+     box-shadow: none;
+  }
+  
+  .todo-add{
+    font-size: 1.5em;
+  }
+  .todo-input{
+    font-size: 1.5em;
+  }
+
+}
+/*for larger devices tablets*/
+@media screen and (min-width: 768px) {
+  header {
+    font-size: 2.5em;
+  }
+  .todo-container {
+    width: 60%;
+  }
+}
+/*for large laptop screens and desktop*/
+@media screen and (min-width: 1440px) {
+  .todo-container {
+    width: 40%;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .todo-container {
+    width: 35%;
+  }
+}
