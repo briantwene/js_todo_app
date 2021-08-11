@@ -1,3 +1,6 @@
+<!-- Filename: index.html
+Name: Brian Twene
+Date: 10/08/2021 -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,32 +9,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JS_todo_app</title>
     <link rel="stylesheet" href="CSS/style.css" />
+    <script
+      src="https://kit.fontawesome.com/1720b4c471.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <header><h1>TO-DO LIST</h1></header>
     <main>
-      <div class="to-do-container">
-        <div class="todo-entry">
-          <form action="">
-            <input type="text" />
-            <button type="submit">ADD</button>
-          </form>
-          <div class="todo-list">
-            <ul>
-              <li>do this</li>
-              <li>do this</li>
-              <li>do this</li>
-              <li>do this</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <section class="todo-container">
+        <section class="todo-entry">
+          <section class="userInput">
+            <input
+              class="todo-input"
+              type="text"
+              placeholder="what do you want to do?"
+            />
+            <button class="todo-add">ADD</button>
+          </section>
+        </section>
+        <section class="todo-list-container hidden">
+          <ul class="todo-list"></ul>
+          <section class="todo-bottom">
+            <button class="clear">CLEAR ALL</button>
+          </section>
+        </section>
+        <section class="no-tasks">
+          <h2>No tasks to do! 💤</h2>
+          <p>Add a task from above</p>
+        </section>
+      </section>
     </main>
     <footer>
       Made by <a href="https://github.com/bt521">@bt521</a>
       <br />
-      <a href="https://github.com/bt521/js_modal">Repo</a>
+      <a href="https://github.com/bt521/js_todo_app">Repo</a>
     </footer>
+    <script src="JavaScript/app.js"></script>
+    <script src="JavaScript/test.js"></script>
   </body>
-  <script src="JavaScript/app.js"></script>
 </html>
