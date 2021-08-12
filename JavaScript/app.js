@@ -2,7 +2,7 @@
 // Name: Brian Twene
 // Date: 10/08/2021
 
-//actuvate strict mode
+//activate strict mode
 "use Strict";
 //select all the elements needed
 const clearbtn = document.querySelector(".clear");
@@ -11,38 +11,46 @@ const listContainer = document.querySelector(".todo-list-container");
 const todoInput = document.querySelector(".todo-input");
 const todoAdd = document.querySelector(".todo-add");
 const noTask = document.querySelector(".no-tasks");
-const hidden = "hidden";
+const todoStorage = window.localStorage;
+//create a global array that will hold the items for storage
+let todos = [];
 
-//function for clearing the whole list
-const clearAll = function () {
-  //while there is still a last child remove it until theres none left
-  while (todoList.lastChild) {
-    todoList.removeChild(todoList.lastChild);
+//function for getting stored data
+const getStorage = function () {
+  const ref = todoStorage.getItem("todo");
+
+  if (ref) {
+    todos = JSON.parse(ref);
+    buildTodos(todos);
   }
-  //hide the empty list and display message to the user
-  toggleHiddenClass();
 };
 
-const toggleHiddenClass = function () {
-  listContainer.classList.toggle("hidden");
-  noTask.classList.toggle("hidden");
+//function for adding updated data in the global array to the localStorage
+const addToStorage = function (todos) {
+  todoStorage.setItem("todo", JSON.stringify(todos));
+  console.log(todoStorage);
+  buildTodos(todos);
 };
 
-//function for getting user input from the app
-const getInput = function () {
-  let input = todoInput.value;
-  return input;
+//function for creating a task
+const createTask = function () {
+  const task = todoInput.value;
+  if (task !== "") {
+    const todoInfo = {
+      task: task,
+      done: false
+    };
+
+    todos.push(todoInfo);
+    addToStorage(todos);
+    todoInput.value = "";
+  } else {
+    alert("invalid input!");
+  }
 };
 
-//function for creating the elements for the task item
-const createElement = function (elName, clName) {
-  const el = document.createElement(elName);
-  el.className = clName;
-  return el;
-};
-
-//function for putting the elements together
-const createTask = function (input) {
+//function for creating the li element around the text for the task
+const createListItem = function (task, done) {
   //create elements and store in variables
   const delBtn = createElement("button", "delete");
   const doneBtn = createElement("button", "done");
@@ -52,46 +60,35 @@ const createTask = function (input) {
   //add textcontent and append them to the list element
   doneBtn.textContent = "✓";
   delBtn.textContent = "✗";
-  spanText.textContent = input;
+  spanText.textContent = task;
+  if (done) {
+    spanText.classList.add("complete");
+  }
   taskItem.append(spanText, doneBtn, delBtn);
   todoList.append(taskItem);
 };
+//function for removing the an item
+const removeFromStorage = function () {};
 
-//function for adding the task to the list
-const addTask = function () {
-  const input = getInput();
-  //if the user entered something then
-  //add the task to the list
-  if (input !== "") {
-    createTask(input);
-    listContainer.classList.remove("hidden");
-    noTask.classList.add("hidden");
-    //otherwise display error message
-  } else {
-    alert("invalid input");
+//function for getting the data out and running the previous function
+const buildTodos = function (todos) {
+  let i;
+  todoList.textContent = "";
+  for (i = 0; i < todos.length; i++) {
+    const task = todos[i].task;
+    const done = todos[i].done;
+    createListItem(task, done);
   }
-  todoInput.value = "";
+  listContainer.classList.remove("hidden");
+};
+//function for actually creating the elements needed for each li
+const createElement = function (elName, clName) {
+  const el = document.createElement(elName);
+  el.className = clName;
+  return el;
 };
 
-//event listener for the clear button
-clearbtn.addEventListener("click", clearAll);
-//event listener for for when user clicks on add button
-todoAdd.addEventListener("click", addTask);
+const toggleDone = function () {};
 
-//event listener that checks if the user pressed the complete or delete button
-todoList.addEventListener("click", function (e) {
-  //if the user clicked the delete button
-  if (e.target.className === "delete") {
-    //remove the parent (li) from the list
-    todoList.removeChild(e.target.parentNode);
-    //and check if there is no items left so that a message can be displayed
-    if (todoList.querySelectorAll(".list-item").length === 0) {
-      toggleHiddenClass();
-    }
-    //otherwise if the user clicked on the done button
-  } else if (e.target.className === "done") {
-    //the mark the text as complete
-    const span = e.target.parentNode.querySelector("span");
-    span.classList.toggle("complete");
-  }
-});
+todoAdd.addEventListener("click", createTask);
+getStorage();
