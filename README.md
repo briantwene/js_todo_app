@@ -1,6 +1,6 @@
 #JS_Todo_app
 
-A To-Do application in created using JavaScript. **[link](https://bt521.github.io/js_todo_app/)**
+A To-Do application in created using JavaScript. **[link](https://briantwene.github.io/js_todo_app/)**
 ![todo-example](todo.png)
 
 ## Features
