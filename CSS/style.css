@@ -27,13 +27,8 @@ body {
     rgba(1, 245, 255, 1) 0%,
     rgba(0, 99, 255, 1) 100%
   );
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: min-content auto min-content;
-  grid-template-areas:
-    "header"
-    "main"
-    "footer";
+  display: flex;
+  flex-direction: column;
 }
 /* _____General Layout settings_____ */
 header {
@@ -46,6 +41,7 @@ header {
 }
 
 main {
+  flex-grow: 1;
   grid-area: main;
   display: flex;
   justify-content: center;
